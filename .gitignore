@@ -1,0 +1,7 @@
+target/
+mybatisDemo.iml
+.idea
+
+.settings/
+.classpath
+.project
