@@ -8,16 +8,16 @@ public class WorkerRunner {
 
 	public static void main(String[] args) {
 
+		for(int i=0; i<2; i++) {
+			new Thread(new Worker(),"Thread-"+ i).start();
+		}
+
 		try {
 			sendMsg(4);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		for(int i=0; i<2; i++) {
-			
-			new Thread(new Worker(),"Thread-"+ i).start();
-		}
+
 	}
 	
 	private static void sendMsg(int msgCount) throws Exception{
