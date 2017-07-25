@@ -18,15 +18,13 @@ public class NewTask {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
+        channel.queueDeclare(TASK_QUEUE_NAME, false, false, false, null);
 
         int msgCount = 0;
         String message = "[" + msgCount + "] Hello World.";
         System.out.println(" ["+ msgCount +"] Sent '" + message + "'");
 
-        channel.basicPublish("", TASK_QUEUE_NAME,
-                MessageProperties.PERSISTENT_TEXT_PLAIN,
-                message.getBytes("UTF-8"));
+        channel.basicPublish("", TASK_QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
 //        System.out.println(" [x] Sent '" + message + "'");
 
         channel.close();

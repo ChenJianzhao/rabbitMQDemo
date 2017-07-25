@@ -9,7 +9,7 @@ public class WorkerRunner {
 	public static void main(String[] args) {
 
 		for(int i=0; i<2; i++) {
-			new Thread(new Worker(),"Thread-"+ i).start();
+//			new Thread(new Worker(),"Thread-"+ i).start();
 		}
 
 		try {
