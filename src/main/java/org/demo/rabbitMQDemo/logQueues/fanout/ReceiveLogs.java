@@ -13,8 +13,13 @@ public class ReceiveLogs {
     Connection connection = factory.newConnection();
     Channel channel = connection.createChannel();
 
+    /** 声明Exchange，类型为 fanout */
     channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+
+    /** 无参数定义一个非持久、独占、自动删除、随机命名的队列 */
     String queueName = channel.queueDeclare().getQueue();
+
+    /** 绑定 exchange 和 queue */
     channel.queueBind(queueName, EXCHANGE_NAME, "");
 
     System.out.println(" [*] Waiting for messages. To exit press CTRL+C");

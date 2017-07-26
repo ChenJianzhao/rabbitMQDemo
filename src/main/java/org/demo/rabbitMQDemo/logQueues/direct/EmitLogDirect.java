@@ -20,8 +20,11 @@ public class EmitLogDirect {
 
 //    String severity = getSeverity(argv);
 //    String message = getMessage(argv);
-    
-    String severity = "info";
+
+    /**
+     *  日志等级  'info', 'warning', 'error'
+     */
+    String severity = "error";
     String message = "Test error";
 
     channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes("UTF-8"));

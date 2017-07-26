@@ -19,8 +19,7 @@ import com.rabbitmq.client.Envelope;
 public class ReceiveLogsDirectToDisk {
 
   private static final String EXCHANGE_NAME = "direct_logs";
-  private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-  
+
   public static void main(String[] argv) throws Exception {
     ConnectionFactory factory = new ConnectionFactory();
     factory.setHost("localhost");
@@ -54,7 +53,6 @@ public class ReceiveLogsDirectToDisk {
         	file.close();
         }
         
-//        System.out.println(" [x] Received '" + envelope.getRoutingKey() + "':'" + message + "'");
       }
     };
     channel.basicConsume(queueName, true, consumer);
