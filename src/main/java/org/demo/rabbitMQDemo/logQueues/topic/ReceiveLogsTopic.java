@@ -22,6 +22,9 @@ public class ReceiveLogsTopic {
 //      System.exit(1);
 //    }
 
+    /** 
+     * 所有来源、所有等级的日志都需要打印到屏幕上 
+     */
     String[] topics = new String[]{"#"};
     for (String bindingKey : topics) {
       channel.queueBind(queueName, EXCHANGE_NAME, bindingKey);

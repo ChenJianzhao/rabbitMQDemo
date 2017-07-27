@@ -26,7 +26,7 @@ public class EmitLogTopic {
       /**
        *  both severity (info/warn/critical...) and facility (auth/cron/kern...).
        */
-      String routingKey = "auth.info"; 
+      String routingKey = "kern.critical"; 
       String message = "A critical kernel error";
 
       channel.basicPublish(EXCHANGE_NAME, routingKey, null, message.getBytes("UTF-8"));
