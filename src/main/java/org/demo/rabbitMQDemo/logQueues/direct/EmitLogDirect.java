@@ -30,6 +30,14 @@ public class EmitLogDirect {
     channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes("UTF-8"));
     System.out.println(" [x] Sent '" + severity + "':'" + message + "'");
 
+    severity = "info";
+    channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes("UTF-8"));
+    System.out.println(" [x] Sent '" + severity + "':'" + message + "'");
+
+    severity = "warning";
+    channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes("UTF-8"));
+    System.out.println(" [x] Sent '" + severity + "':'" + message + "'");
+
     channel.close();
     connection.close();
   }

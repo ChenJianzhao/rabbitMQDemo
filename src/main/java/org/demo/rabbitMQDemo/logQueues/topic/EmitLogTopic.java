@@ -29,8 +29,17 @@ public class EmitLogTopic {
       String routingKey = "kern.critical"; 
       String message = "A critical kernel error";
 
-      channel.basicPublish(EXCHANGE_NAME, routingKey, null, message.getBytes("UTF-8"));
-      System.out.println(" [x] Sent '" + routingKey + "':'" + message + "'");
+      String[] severity = new String[] {"info","warn","critical"};
+      String[] facility = new String[] {"auth","cron","kern"};
+      for(String s : severity) {
+        for(String f : facility) {
+
+          routingKey = f + "." + s ;
+
+          channel.basicPublish(EXCHANGE_NAME, routingKey, null, message.getBytes("UTF-8"));
+          System.out.println(" [x] Sent '" + routingKey + "':'" + message + "'");
+        }
+      }
 
     }
     catch  (Exception e) {

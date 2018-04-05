@@ -27,6 +27,8 @@ public class ReceiveLogsDirectToDisk {
     Channel channel = connection.createChannel();
 
     channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+
+    /** 无参数定义一个非持久、独占、自动删除、随机命名的队列 */
     String queueName = channel.queueDeclare().getQueue();
 
 

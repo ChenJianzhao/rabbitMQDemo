@@ -22,7 +22,7 @@ public class WorkerRunner {
 	
 	private static void sendMsg(int msgCount) throws Exception{
 		
-		String QUEUE_NAME = "hello";
+		String QUEUE_NAME = "task_queue";
 		 
 		ConnectionFactory factory = new ConnectionFactory();
 	    factory.setHost("localhost");
@@ -37,7 +37,7 @@ public class WorkerRunner {
 	    channel.basicQos(prefetchCount);
 	    
 	    // 定义队列
-	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+	    channel.queueDeclare(QUEUE_NAME, true, false, false, null);
 	    
 	    for(int i=0; i<msgCount; i++) {
 	    	String message = "[" + i + "] Hello World.";

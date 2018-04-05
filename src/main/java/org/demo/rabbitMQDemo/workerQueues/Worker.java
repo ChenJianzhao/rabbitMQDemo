@@ -33,7 +33,7 @@ public class Worker {
 			int prefetchCount = 1;
 			channel.basicQos(prefetchCount);
 
-			channel.queueDeclare(TASK_QUEUE_NAME, false, false, false, null);
+			channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
 			System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 			consumer = new DefaultConsumer(channel) {
@@ -47,9 +47,9 @@ public class Worker {
 					} catch(InterruptedException e){
 						e.printStackTrace();
 					}finally {
-//						System.out.println(" [x] Done");
 						/**
-						 * 向服务器发送确认消息
+						 * autoAck = false
+						 * 需要手动向服务器发送确认消息
 						 */
 //						channel.basicAck(envelope.getDeliveryTag(), false);
 					}
@@ -68,6 +68,11 @@ public class Worker {
 		}
 	}
 
+	/**
+	 * 模拟任务执行
+	 * @param task
+	 * @throws InterruptedException
+	 */
 	private static void doWork(String task) throws InterruptedException {
 	    for (char ch: task.toCharArray()) {
 	        if (ch == '.') Thread.sleep(1000);
